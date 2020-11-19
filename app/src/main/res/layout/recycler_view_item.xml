@@ -6,15 +6,12 @@
     android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-  <TextView
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:focusable="true"
-      />
   <ImageButton
+      android:id="@+id/videoBox"
       android:src="@mipmap/ic_launcher"
       android:layout_width="0dp"
       android:minHeight="100dp"
+      android:minWidth="100dp"
       android:layout_height="wrap_content"
       tools:src="@tools:sample/avatars"
       android:layout_weight="2"

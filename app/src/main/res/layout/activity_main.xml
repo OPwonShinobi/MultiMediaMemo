@@ -20,7 +20,17 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
-
+    <TextView
+        android:id="@+id/empty_list_msg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_memo_list_msg"
+        android:textSize="15sp"
+        android:focusable="true"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/memo_list"
         android:layout_width="match_parent"
