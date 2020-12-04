@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoEntryHolder> {
-    private final List<String> mDataset;
+    private final List<Integer> mDataset;
     private final MainActivity mViewController;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -26,7 +26,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoEntryHolde
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MemoAdapter(List<String> dataset, MainActivity viewController) {
+    public MemoAdapter(List<Integer> dataset, MainActivity viewController) {
         mDataset = dataset;
         mViewController = viewController;
     }

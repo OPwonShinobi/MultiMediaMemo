@@ -25,6 +25,7 @@
     <string name="caption">caption</string>
     <string name="speech_permission_err">Your device does not support speech input</string>
     <string name="empty_memo_list_msg">No memos yet, try creating one by clicking the \'+\' button above</string>
+    <string name="speech_help_msg">For best results, speak slowly &amp; clearly into mic</string>
 
 
 </resources>

@@ -1,10 +1,7 @@
 package com.example.multimediamemos;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import java.io.InputStream;
 
 
 public class MemoEntryView extends FrameLayout {
@@ -37,35 +33,42 @@ public class MemoEntryView extends FrameLayout {
         viewController = activity;
 
         videoBtn.setOnClickListener(listener);
+        videoBtn.setOnLongClickListener(longListener);
         playBtn.setOnClickListener(listener);
         recordBtn.setOnClickListener(listener);
         saveBtn.setOnClickListener(listener);
         deleteBtn.setOnClickListener(listener);
     }
-
+    private final OnLongClickListener longListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            videoLongClick();
+            return false;
+        }
+    };
     private final OnClickListener listener = new OnClickListener() {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.videoBox:
-                    videoClick(v);
+                    videoClick();
                     break;
                 case R.id.playBtn:
-                    playClick(v);
+                    playClick();
                     break;
                 case R.id.recordBtn:
-                    recordClick(v);
+                    recordClick();
                     break;
                 case R.id.saveBtn:
                     saveClick(v);
                     break;
                 case R.id.deleteBtn:
-                    deleteClick(v);
+                    deleteClick();
                     break;
             }
         }
     };
 
-    private void playClick(View view) {
+    private void playClick() {
         if (memo.getVoiceRecordPath() != null) {
 //            InputStream filestream = viewController.getContentResolver().openInputStream(audioUri);
             MediaPlayer mp = new MediaPlayer();
@@ -78,16 +81,21 @@ public class MemoEntryView extends FrameLayout {
             }
         }
     }
-    private void recordClick(View view) {
+    private void videoLongClick() {
+        viewController.pickMedia(memo, videoBtn);
+    }
+    private void recordClick() {
         viewController.recordVoice(memo, captionField);
     }
     private void saveClick(View view) {
         Toast.makeText(view.getContext(), "save?", Toast.LENGTH_SHORT).show();
     }
-    private void deleteClick(View view) {
-        Toast.makeText(view.getContext(), "delete?", Toast.LENGTH_SHORT).show();
+    private void deleteClick() {
+        viewController.deleteItem(null);
     }
-    private void videoClick(View view) {
-        viewController.pickMedia(memo, videoBtn);
+    private void videoClick() {
+        if (memo.getMediaPath() != null) {
+            viewController.showMedia(memo);
+        }
     }
 }
