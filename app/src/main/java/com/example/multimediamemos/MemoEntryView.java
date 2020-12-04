@@ -1,5 +1,6 @@
 package com.example.multimediamemos;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-
+@SuppressLint("ViewConstructor")
 public class MemoEntryView extends FrameLayout {
     public EditText captionField;
     public ImageButton videoBtn;

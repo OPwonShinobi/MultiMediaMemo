@@ -15,6 +15,7 @@
       android:layout_height="wrap_content"
       tools:src="@tools:sample/avatars"
       android:layout_weight="2"
+      android:contentDescription="@string/img_desc"
       />
   <LinearLayout
       android:layout_width="wrap_content"

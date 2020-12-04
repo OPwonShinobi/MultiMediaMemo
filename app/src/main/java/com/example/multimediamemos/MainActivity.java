@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import lombok.NonNull;
 import lombok.SneakyThrows;
 
 public class MainActivity extends AppCompatActivity {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, int[] grantResults) {
         for (int i = 0; i < grantResults.length; i++) {
             if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission denied for:" + permissions[i], Toast.LENGTH_SHORT).show();
@@ -175,7 +176,9 @@ public class MainActivity extends AppCompatActivity {
 //                    Uri audioUri = data.getData();
 //                    tempMemo.setVoiceRecordPath(audioUri.toString());
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    tempCaptionField.setText(result.get(0));
+                    if (result != null) {
+                        tempCaptionField.setText(result.get(0));
+                    }
                 }
             } else if (resultCode == Activity.RESULT_CANCELED)  {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
@@ -189,10 +192,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        FileChannel source = null;
-        FileChannel destination = null;
-        source = new FileInputStream(sourceFile).getChannel();
-        destination = new FileOutputStream(destFile).getChannel();
+        FileChannel source = new FileInputStream(sourceFile).getChannel();
+        FileChannel destination = new FileOutputStream(destFile).getChannel();
         if (destination != null && source != null) {
             destination.transferFrom(source, 0, source.size());
         }

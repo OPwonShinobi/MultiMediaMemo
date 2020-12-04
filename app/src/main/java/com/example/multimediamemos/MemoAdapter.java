@@ -1,14 +1,13 @@
 package com.example.multimediamemos;
 
-import android.app.Activity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import lombok.NonNull;
 
 public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoEntryHolder> {
     private final List<Integer> mDataset;
@@ -33,7 +32,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoEntryHolde
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MemoEntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MemoEntryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         MemoEntryView v = new MemoEntryView(parent.getContext(), mViewController);
         MemoEntryHolder vh = new MemoEntryHolder(v);
         return vh;
@@ -41,7 +40,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoEntryHolde
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MemoEntryHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MemoEntryHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 //        holder.textView.setText(mDataset.get(position));
